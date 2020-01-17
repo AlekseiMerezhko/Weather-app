@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 
 const Header = props => {
   const classes = useStyles();
-  console.log(props, "----");
   return (
     <div className={classes.root}>
       {props.cities.loading ? <LinearProgress /> : null}

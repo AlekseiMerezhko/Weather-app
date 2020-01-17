@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Forecast from "./pages/Forecast";
 import Home from "./pages/Home";
 import Users from "./pages/Users";
+import NoMatch from "./pages/NoMatch";
 
 import "./App.css";
 
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/users">
             <Users />
+          </Route>
+          <Route path="*">
+            <NoMatch />
           </Route>
         </Switch>
       </main>
