@@ -12,11 +12,6 @@ const ForecastTable = ({ currentCity, dailyForecast }) => {
     setState({ ...state, [name]: event.target.checked });
   };
 
-  const cToF = celsius => {
-    const cToFahr = (celsius * 9) / 5 + 32;
-    return Math.round(cToFahr);
-  };
-
   const fToC = fahrenheit => {
     const fToCel = ((fahrenheit - 32) * 5) / 9;
     return Math.round(fToCel);

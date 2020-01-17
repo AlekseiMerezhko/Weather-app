@@ -6,7 +6,7 @@ import {
 } from "../actions/getCitiesAction";
 
 export const citiesReducer = (
-  state = { value: "", cities: [], currentCity: null },
+  state = { value: "", cities: [], currentCity: null, loading: false },
   action
 ) => {
   switch (action.type) {
@@ -35,6 +35,8 @@ export const citiesReducer = (
     case EMPTY_CITY_VALUE:
       return {
         ...state,
+        loading: false,
+        error: false,
         value: action.payload.value
       };
     default:

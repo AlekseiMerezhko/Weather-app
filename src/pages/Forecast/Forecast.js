@@ -16,13 +16,15 @@ const Forecast = props => {
       try {
         fetchData();
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     }
   }, [props.currentCity]);
   return (
     <div>
-      <h1 className="text-center">Forecast</h1>
+      {props.currentCity ? (
+        <h1 className="text-center">Forecast for {props.value} for 15 days</h1>
+      ) : null}
       <div className="flex justify-center mt-10">
         <ForecastTable
           forecast={forecast}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
 
 import Header from "./components/Header";
 import Forecast from "./pages/Forecast";
