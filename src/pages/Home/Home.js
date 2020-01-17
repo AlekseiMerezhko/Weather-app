@@ -1,75 +1,43 @@
 import React, { useState, useEffect } from "react";
+
 import AutocompleteInput from "../../components/Inputs/Autocomplete";
-import DailyForecastTable from "../../components/Tables/DailyForecastTable";
-import { apiKey, resourceAutocompleteURL } from "../../const/index";
-const axios = require("axios");
-// request = /locations/v1/cities/autocomplete?apikey=3clOMgYa8NDorsG3aEieG6VHaHbEcnRT&q=a
-// 1 Day of Daily Forecast ----- "http://dataservice.accuweather.com/forecasts/v1/daily/1day/182536?apikey=3clOMgYa8NDorsG3aEieG6VHaHbEcnRT"
-const Home = () => {
-  const [state, setState] = useState({ value: "", cities: [], currentCity: null });
+import ForecastTable from "../../components/Tables/ForecastTable";
+import { apiKey } from "../../const/index";
+import { get1DayForecast } from "../../api/axios";
+
+const Home = props => {
   const [dailyForecast, setDailyForecast] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      let res = await axios.get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/1day/${state.currentCity.Key}?apikey=${apiKey}`
-      );
+      const res = await get1DayForecast(props.currentCity.Key, apiKey);
       const { data } = res;
-      setDailyForecast(data.DailyForecasts[0]);
+      setDailyForecast(data.DailyForecasts);
     }
-    if (state.currentCity) {
+    if (props.currentCity) {
       try {
         fetchData();
       } catch (error) {
         console.log(error);
       }
     }
-  }, [state.currentCity]);
+  }, [props.currentCity]);
 
-  const handleChangeValue = async value => {
+  const handleChangeValue = value => {
     const [cityValue, countryValue, idValue] = value.split(", ");
-    if (cityValue !== "") {
-      try {
-        let res = await axios.get(
-          `${resourceAutocompleteURL}?apikey=${apiKey}&q=${cityValue}`
-        );
-        let { data } = res;
-        const citiesArray = data.map(city => ({
-          ...city,
-          label: `${city.LocalizedName}, ${city.Country.LocalizedName}, ${city.AdministrativeArea.ID}`,
-          value: city.LocalizedName
-        }));
-        const currentCity = data.filter(
-          city =>
-            city.LocalizedName === cityValue &&
-            city.AdministrativeArea.ID === idValue
-        )[0];
-        setState({
-          value,
-          cities: citiesArray,
-          currentCity: currentCity ? currentCity : null
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      setState({
-        ...state,
-        value
-      });
-    }
+    props.getCities({ value: value, cityValue: cityValue, idValue: idValue });
   };
 
   return (
     <div>
       <AutocompleteInput
-        value={state.value}
-        cities={state.cities}
+        value={props.value}
+        cities={props.cities}
         setValue={handleChangeValue}
       />
       <div className="flex justify-center mt-10">
-        <DailyForecastTable
-          currentCity={state.currentCity}
+        <ForecastTable
+          currentCity={props.currentCity}
           dailyForecast={dailyForecast}
         />
       </div>
