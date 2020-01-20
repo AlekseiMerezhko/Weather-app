@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = props => {
   const classes = useStyles();
+  const { currentUser } = props.user;
   return (
     <div className={classes.root}>
       {props.cities.loading ? <LinearProgress /> : null}
@@ -53,7 +54,7 @@ const Header = props => {
           </div>
           <div className="text-xl text-white text-center">
             <p>
-              Hi, <span>{props.user.name || ""}</span>
+              Hi, <span>{currentUser.name || ""}</span>
             </p>
           </div>
         </div>

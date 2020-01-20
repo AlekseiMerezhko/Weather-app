@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.1",
+    "formik": "^2.1.2",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.24.0",
     "postcss-cli": "^7.1.0",
@@ -22,7 +23,9 @@
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "sweetalert2": "^9.6.0",
+    "yup": "^0.28.0"
   },
   "scripts": {
     "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
