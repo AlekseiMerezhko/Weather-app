@@ -70,7 +70,7 @@ const Users = props => {
         allUsers={props.user.users}
         addUser={props.addUser}
       />
-      <div className="flex justify-around flex-wrap">
+      <div className="flex justify-between flex-wrap">
         {props.user.users.map(user => (
           <UserCard
             editMode={props.user.editMode.active}
