@@ -1,11 +1,12 @@
 import React from "react";
-// import { useFormik } from "formik";
 import { Formik, Form, Field } from "formik";
 import { AddUserSchema } from "./UserSchemas";
 const AddUserForm = props => {
   const alreadyExist = value => {
     let error;
-    const checkUser = props.allUsers.some(user => user.email === value);
+    const checkUser =
+      props.allUsers.some(user => user.email === value) &&
+      props.editMode.email !== value;
     if (checkUser) {
       error = "User already exist!";
     }
@@ -13,18 +14,44 @@ const AddUserForm = props => {
   };
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={{
-        name: "",
-        email: ""
+        name: props.editMode.active ? props.editMode.name : "",
+        email: props.editMode.active ? props.editMode.email : ""
       }}
       validationSchema={AddUserSchema}
-      onSubmit={values => {
-        return props.addUser({
-          user: { name: values.name, email: values.email }
-        });
+      onSubmit={(values, { resetForm }) => {
+        if (!props.editMode.active) {
+          props.addUser({
+            user: { name: values.name, email: values.email }
+          });
+          resetForm({});
+        } else {
+          const currentIndex = props.allUsers.findIndex(
+            user => user.email === props.editMode.email
+          );
+          const copyUsers = [...props.allUsers];
+
+          copyUsers.splice(currentIndex, 1, {
+            name: values.name,
+            email: values.email
+          });
+
+          if (props.editMode.email === props.currentUser.email) {
+            const newCurrentUser = {
+              name: values.name,
+              email: values.email
+            };
+            props.handleEditUser(copyUsers, newCurrentUser);
+          } else {
+            props.handleEditUser(copyUsers, props.currentUser);
+          }
+
+          resetForm({});
+        }
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values }) => (
         <Form className="w-full max-w-sm ml-auto mr-auto">
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
@@ -79,7 +106,7 @@ const AddUserForm = props => {
                 type="submit"
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
               >
-                Add User
+                {props.editMode.active ? "Save" : "Add User"}
               </button>
             </div>
           </div>

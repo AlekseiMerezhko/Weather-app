@@ -4,7 +4,9 @@ const UserCard = ({
   user,
   userNotAlone,
   handleChangeUser,
-  handleDeleteUser
+  handleDeleteUser,
+  editModeToggler,
+  editMode
 }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -33,15 +35,24 @@ const UserCard = ({
       <div className="px-6 py-4 flex justify-between">
         <button
           id={user.email}
+          disabled={editMode}
           onClick={e => handleChangeUser(e.target.id)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
         >
           Select
         </button>
+        <button
+          onClick={e => editModeToggler(e.target.id)}
+          disabled={editMode}
+          id={user.email}
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Edit
+        </button>
         {userNotAlone ? (
           <button
             id={user.email}
-            disabled={!userNotAlone}
+            disabled={!userNotAlone && editMode}
             onClick={e => handleDeleteUser(e.target.id)}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
           >

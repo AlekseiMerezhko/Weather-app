@@ -3,9 +3,13 @@ import Swal from "sweetalert2";
 
 import AddUserForm from "../../components/Forms/UserForm/AddUserForm";
 import UserCard from "./UserCard";
+import UserDeleteModal from "../../components/Modals/UserDeleteModal";
+
 const Users = props => {
-  console.log("props", props);
+  const [modalIsOpen, setModal] = useState(false);
+
   const userNotAlone = props.user.users.length > 1;
+
   const handleChangeUser = userId => {
     const currentUser = props.user.users.find(user => user.email === userId);
     if (props.user.currentUser.email === userId) {
@@ -18,21 +22,60 @@ const Users = props => {
       props.changeUser({ currentUser });
     }
   };
+
   const handleDeleteUser = userId => {
     const allUsers = props.user.users.filter(user => user.email !== userId);
     const currentUser = props.user.currentUser.email;
     if (userId !== currentUser) {
       props.deleteUser({ users: allUsers });
     } else {
-      console.log("Need to change");
+      openModal();
     }
   };
+
+  const editModeToggler = userId => {
+    const currentUser = props.user.users.find(user => user.email === userId);
+    props.editUserStart({
+      editMode: {
+        active: true,
+        name: currentUser.name,
+        email: currentUser.email
+      }
+    });
+  };
+
+  const handleEditUser = (users, currentUser) => {
+    props.editUserEnd({
+      users,
+      currentUser,
+      editMode: { active: false, name: "", email: "" }
+    });
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const openModal = () => {
+    setModal(true);
+  };
+
   return (
     <div>
-      <AddUserForm allUsers={props.user.users} addUser={props.addUser} />
+      <AddUserForm
+        handleEditUser={handleEditUser}
+        editModeEnd={props.editModeEnd}
+        editMode={props.user.editMode}
+        currentUser={props.user.currentUser}
+        allUsers={props.user.users}
+        addUser={props.addUser}
+      />
       <div className="flex justify-around flex-wrap">
         {props.user.users.map(user => (
           <UserCard
+            editMode={props.user.editMode.active}
+            editModeToggler={editModeToggler}
+            openModal={openModal}
             handleDeleteUser={handleDeleteUser}
             userNotAlone={userNotAlone}
             key={user.email}
@@ -41,6 +84,7 @@ const Users = props => {
           />
         ))}
       </div>
+      <UserDeleteModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </div>
   );
 };
