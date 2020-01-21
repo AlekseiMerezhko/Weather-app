@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Forecast from "./pages/Forecast";
 import Home from "./pages/Home";
 import Users from "./pages/Users";
+import Articles from "./pages/Articles";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import { PrivateRoute } from "./hoc/PrivateRoute";
@@ -40,7 +41,12 @@ function App(props) {
               path="/users"
               component={Users}
             />
-
+            <PrivateRoute
+              logined={props.logined}
+              exact
+              path="/articles"
+              component={Articles}
+            />
             <Route path="*" component={NoMatch} />
           </Switch>
         </main>
