@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
-
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = props => {
   const classes = useStyles();
+  const history = useHistory();
   const { currentUser } = props.user;
   return (
     <div className={classes.root}>
@@ -53,9 +54,17 @@ const Header = props => {
             </Link>
           </div>
           <div className="text-xl text-white text-center">
-            <p>
-              Hi, <span>{currentUser.name || ""}</span>
-            </p>
+            {props.logined ? (
+              <p>
+                Hi,{" "}
+                <span
+                  className="cursor-pointer"
+                  onClick={() => history.push("/login")}
+                >
+                  {currentUser.name || ""}
+                </span>
+              </p>
+            ) : null}
           </div>
         </div>
       </nav>
