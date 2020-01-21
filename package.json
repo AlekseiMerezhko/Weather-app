@@ -11,6 +11,7 @@
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.1",
     "classnames": "^2.2.6",
+    "enzyme-to-json": "^3.4.3",
     "formik": "^2.1.2",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.24.0",
@@ -30,11 +31,17 @@
     "sweetalert2": "^9.6.0",
     "yup": "^0.28.0"
   },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "scripts": {
     "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
     "start": "npm run tailwind:css && react-scripts start",
     "build": "npm run tailwind:css && react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -53,6 +60,9 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^24.9.0",
     "redux-logger": "^3.0.6",
     "tailwindcss": "^1.1.4"
   }
