@@ -7,7 +7,7 @@ import UserDeleteModal from "../../components/Modals/UserDeleteModal";
 
 const Users = props => {
   const [modalIsOpen, setModal] = useState(false);
-
+  console.log(props, "----");
   const userNotAlone = props.user.users.length > 1;
 
   const handleChangeUser = userId => {
@@ -73,6 +73,7 @@ const Users = props => {
       <div className="flex justify-between flex-wrap">
         {props.user.users.map(user => (
           <UserCard
+            articles={props.articles.articles}
             editMode={props.user.editMode.active}
             editModeToggler={editModeToggler}
             openModal={openModal}

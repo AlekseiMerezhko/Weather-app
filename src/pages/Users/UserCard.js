@@ -6,7 +6,8 @@ const UserCard = ({
   handleChangeUser,
   handleDeleteUser,
   editModeToggler,
-  editMode
+  editMode,
+  articles
 }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -17,6 +18,23 @@ const UserCard = ({
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil.
         </p>
+        <div
+          className="p-2 mt-4 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+          role="alert"
+        >
+          <span className="font-semibold mr-2 text-left flex-auto">
+            This user has
+          </span>
+          <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">
+            {
+              articles.filter(article => article.creatorEmail === user.email)
+                .length
+            }
+          </span>
+          <span className="font-semibold mr-2 text-left flex-auto">
+            articles
+          </span>
+        </div>
       </div>
       <div className="px-6 py-4">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">

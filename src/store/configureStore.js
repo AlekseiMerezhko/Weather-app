@@ -11,7 +11,7 @@ import rootSaga from "../sagas";
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["user", "cities", "login"] // which reducer want to store
+  whitelist: ["user", "cities", "login", "articles"] // which reducer want to store
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);

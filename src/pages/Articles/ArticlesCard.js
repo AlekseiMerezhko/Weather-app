@@ -1,23 +1,21 @@
 import React from "react";
-import download from "../../assets/download.jpeg";
-import { articlesReducer } from "../../reducers/articles";
+
 const Articlescard = ({ article }) => {
   return (
     <div
-      className={` m-5 max-w-md w-full max-h-md h-full lg:max-w-md lg:max-h-md lg:flex ${
+      className={`m-5 max-w-md w-full max-h-md flex ${
         article.important ? "border-2 border-red-500" : null
       }`}
     >
       <div
-        className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-        title="Woman holding a mug"
+        className="h-48 h-auto w-48 bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center border-r border-b border-l border-gray-400 lg:border-r-0 lg:border-t lg:border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r"
         style={{
           backgroundImage: `url(${article.img})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat"
         }}
       ></div>
-      <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+      <div className="w-full h-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
         <div className="mb-8">
           <p className="text-sm text-gray-600 flex items-center">
             <svg

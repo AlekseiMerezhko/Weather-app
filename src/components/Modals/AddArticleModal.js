@@ -40,6 +40,8 @@ const AddArticleModal = props => {
       >
         <div>
           <ArticleForm
+            closeModal={props.closeModal}
+            currentUser={props.currentUser}
             addArticle={props.addArticle}
             prevStep={prevStep}
             nextStep={nextStep}

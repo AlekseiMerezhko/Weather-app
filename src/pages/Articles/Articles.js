@@ -3,6 +3,9 @@ import ArticlesCard from "./ArticlesCard";
 import AddArticleModal from "../../components/Modals/AddArticleModal";
 
 const Articles = props => {
+  const { articles } = props.articles;
+  const { currentUser } = props.user;
+  console.log(currentUser, "user");
   const [addArticleModal, setAddArticleModal] = useState(false);
 
   const openAddArticleModal = () => {
@@ -13,7 +16,7 @@ const Articles = props => {
   };
 
   return (
-    <div className="lg:w-3/4 w-full m-auto">
+    <div className=" w-full m-auto flex flex-col">
       <div>
         <button
           onClick={openAddArticleModal}
@@ -22,12 +25,13 @@ const Articles = props => {
           Add Article
         </button>
       </div>
-      <div className="p-2 flex flex-wrap justify-center">
-        {props.articles.map(article => (
+      <div className="p-2 flex flex-wrap flex-row items-stretch justify-center">
+        {articles.map(article => (
           <ArticlesCard article={article} key={article.id} />
         ))}
       </div>
       <AddArticleModal
+        currentUser={currentUser}
         addArticle={props.addArticle}
         closeModal={closeAddArticleModal}
         modalIsOpen={addArticleModal}

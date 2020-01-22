@@ -12,7 +12,7 @@ import Users from "./Users";
 //   user: state.user,
 // }), { changeUser })(Users);
 
-export default connect(({ user }) => ({ user }), {
+export default connect(({ user, articles }) => ({ user, articles }), {
   changeUser,
   addUser,
   deleteUser,

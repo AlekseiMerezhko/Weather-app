@@ -1,18 +1,25 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import TailwindFormikInput from "../../Inputs/TailwindFormikInput";
 import TailwindFormikSelect from "../../Inputs/TailwindFormikSelect";
 import TailwindFormikCheckbox from "../../Inputs/TailwindFormikCheckbox";
 import { AddArticleSchema } from "./ArticlesSchemas";
-// id = `f${(~~(Math.random()*1e8)).toString(16)}`
 
-const ArticleForm = ({ nextStep, prevStep, step, addArticle }) => {
+const ArticleForm = ({
+  nextStep,
+  prevStep,
+  step,
+  addArticle,
+  currentUser,
+  closeModal
+}) => {
   return (
     <div>
       <Formik
         enableReinitialize={true}
         initialValues={{
-          creatorName: "",
+          creatorName: currentUser.name,
+          creatorEmail: currentUser.email,
           pseudonym: "",
           img: "",
           title: "",
@@ -26,8 +33,8 @@ const ArticleForm = ({ nextStep, prevStep, step, addArticle }) => {
             ...values,
             id: `f${(~~(Math.random() * 1e8)).toString(16)}`
           };
-          return addArticle({ articles: newArticle });
-          // console.log(newArticle);
+          addArticle({ articles: newArticle });
+          closeModal();
         }}
       >
         {({
@@ -35,19 +42,28 @@ const ArticleForm = ({ nextStep, prevStep, step, addArticle }) => {
           touched,
           values,
           validateForm,
+          validateValue,
           setErrors,
           setTouched,
           setFieldValue,
           setFieldTouched
         }) => (
-          <Form className="w-full max-w-sm ml-auto mr-auto">
+          <Form className="w-full  ml-auto mr-auto">
             {step === 0 ? (
-              <div>
+              <div className="w-full">
                 <TailwindFormikInput
                   errors={errors.creatorName}
                   touched={touched.creatorName}
                   label={"Your Name"}
+                  disabled={true}
                   name={"creatorName"}
+                />
+                <TailwindFormikInput
+                  errors={errors.creatorEmail}
+                  touched={touched.creatorEmail}
+                  label={"Your Email"}
+                  disabled={true}
+                  name={"creatorEmail"}
                 />
                 <TailwindFormikInput
                   errors={errors.pseudonym}
@@ -66,18 +82,19 @@ const ArticleForm = ({ nextStep, prevStep, step, addArticle }) => {
                   <div className="md:w-2/4">
                     <button
                       onClick={async () => {
-                        const validate = await validateForm();
-                        console.log(validate);
+                        // const validate = await validateForm();
+                        console.log(values);
                         if (
-                          validate.creatorName ||
-                          validate.pseudonym ||
-                          validate.img
+                          !values.creatorName ||
+                          !values.creatorEmail ||
+                          !values.pseudonym ||
+                          !values.img
                         ) {
                           return;
                         } else {
-                          nextStep();
                           setErrors({});
                           setTouched({});
+                          nextStep();
                         }
                       }}
                       className="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
@@ -88,7 +105,7 @@ const ArticleForm = ({ nextStep, prevStep, step, addArticle }) => {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="w-full">
                 <TailwindFormikInput
                   errors={errors.title}
                   touched={touched.title}
