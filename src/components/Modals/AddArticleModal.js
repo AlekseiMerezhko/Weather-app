@@ -10,7 +10,9 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "25px"
-  }
+    // backgroundColor: "rgba(29, 29, 29, 0.5)"
+  },
+  overlay: { backgroundColor: "rgba(39, 39, 39, 0.75)" }
 };
 Modal.setAppElement("#root");
 

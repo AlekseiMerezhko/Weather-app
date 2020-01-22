@@ -23,7 +23,7 @@ const TailwindFormikSelect = ({
         <select
           className={`${
             errors && touched ? "border-red-500" : null
-          } block appearance-none w-full bg-gray-200 border-2 border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+          } form-select block appearance-none w-full bg-gray-200 border-2 border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
           id="grid-state"
           name={name}
           value={value}

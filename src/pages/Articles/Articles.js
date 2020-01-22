@@ -5,7 +5,6 @@ import AddArticleModal from "../../components/Modals/AddArticleModal";
 const Articles = props => {
   const { articles } = props.articles;
   const { currentUser } = props.user;
-  console.log(currentUser, "user");
   const [addArticleModal, setAddArticleModal] = useState(false);
 
   const openAddArticleModal = () => {

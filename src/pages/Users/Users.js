@@ -70,7 +70,7 @@ const Users = props => {
         allUsers={props.user.users}
         addUser={props.addUser}
       />
-      <div className="flex justify-between flex-wrap">
+      <div className="flex md:justify-between justify-center flex-wrap">
         {props.user.users.map(user => (
           <UserCard
             articles={props.articles.articles}
