@@ -27,6 +27,8 @@ const ArticleForm = ({
           important: false,
           category: ""
         }}
+        validateOnChange={true}
+        validateOnBlur={true}
         validationSchema={AddArticleSchema}
         onSubmit={values => {
           const newArticle = {
@@ -82,18 +84,15 @@ const ArticleForm = ({
                   <div className="md:w-2/4">
                     <button
                       onClick={async () => {
-                        // const validate = await validateForm();
-                        console.log(values);
+                        const validate = await validateForm();
                         if (
-                          !values.creatorName ||
-                          !values.creatorEmail ||
-                          !values.pseudonym ||
-                          !values.img
+                          validate.creatorName ||
+                          validate.creatorEmail ||
+                          validate.pseudonym ||
+                          validate.img
                         ) {
                           return;
                         } else {
-                          setErrors({});
-                          setTouched({});
                           nextStep();
                         }
                       }}
@@ -127,12 +126,14 @@ const ArticleForm = ({
                   label={"Category"}
                   name={"category"}
                 />
-                <TailwindFormikCheckbox
-                  name={"important"}
-                  handleChange={setFieldValue}
-                  checked={values.important}
-                  label={"Important"}
-                />
+                <div className="flex justify-end">
+                  <TailwindFormikCheckbox
+                    name={"important"}
+                    handleChange={setFieldValue}
+                    checked={values.important}
+                    label={"Important"}
+                  />
+                </div>
                 <div className="md:flex md:items-center">
                   <div className="md:w-2/4">
                     <button

@@ -22,6 +22,7 @@ const AddArticleModal = props => {
   useEffect(() => {
     return resetStep();
   }, [props.modalIsOpen]);
+
   const nextStep = () => {
     setStep(step + 1);
   };
