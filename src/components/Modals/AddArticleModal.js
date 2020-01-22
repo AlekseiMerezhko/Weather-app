@@ -10,7 +10,6 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "25px"
-    // backgroundColor: "rgba(29, 29, 29, 0.5)"
   },
   overlay: { backgroundColor: "rgba(39, 39, 39, 0.75)" }
 };
@@ -50,6 +49,9 @@ const AddArticleModal = props => {
             nextStep={nextStep}
             step={step}
           />
+          {/* <ArcticleForm renderForm={(props => {
+
+          })}/>> */}
           <button
             onClick={() => {
               props.closeModal();

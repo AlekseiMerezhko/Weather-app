@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import TailwindFormikInput from "../../Inputs/TailwindFormikInput";
 import TailwindFormikSelect from "../../Inputs/TailwindFormikSelect";
 import TailwindFormikCheckbox from "../../Inputs/TailwindFormikCheckbox";
-import { AddArticleSchema } from "./ArticlesSchemas";
+import { AddArticleSchema1, AddArticleSchema2 } from "./ArticlesSchemas";
 
 const ArticleForm = ({
   nextStep,
@@ -12,6 +12,7 @@ const ArticleForm = ({
   addArticle,
   currentUser,
   closeModal
+  // renderForm = values => {}
 }) => {
   return (
     <div>
@@ -27,30 +28,35 @@ const ArticleForm = ({
           important: false,
           category: ""
         }}
-        validateOnChange={true}
-        validateOnBlur={true}
-        validationSchema={AddArticleSchema}
+        // validateOnMount={false}
+        // validateOnChange={false}
+        // validateOnBlur={false}
+        validationSchema={step === 0 ? AddArticleSchema1 : AddArticleSchema2}
         onSubmit={values => {
-          const newArticle = {
-            ...values,
-            id: `f${(~~(Math.random() * 1e8)).toString(16)}`
-          };
-          addArticle({ articles: newArticle });
-          closeModal();
+          if (step === 0) {
+            return nextStep();
+          } else {
+            const newArticle = {
+              ...values,
+              id: `f${(~~(Math.random() * 1e8)).toString(16)}`
+            };
+            addArticle({ articles: newArticle });
+            closeModal();
+          }
         }}
       >
         {({
           errors,
           touched,
           values,
-          validateForm,
-          validateValue,
-          setErrors,
-          setTouched,
+          // validateForm,
+          // validateValue,
+          // setErrors,
+          // setTouched,
           setFieldValue,
           setFieldTouched
         }) => (
-          <Form className="w-full  ml-auto mr-auto">
+          <Form className="w-full ml-auto mr-auto">
             {step === 0 ? (
               <div className="w-full">
                 <TailwindFormikInput
@@ -83,19 +89,7 @@ const ArticleForm = ({
                   <div className="md:w-2/4"></div>
                   <div className="md:w-2/4">
                     <button
-                      onClick={async () => {
-                        const validate = await validateForm();
-                        if (
-                          validate.creatorName ||
-                          validate.creatorEmail ||
-                          validate.pseudonym ||
-                          validate.img
-                        ) {
-                          return;
-                        } else {
-                          nextStep();
-                        }
-                      }}
+                      type="submit"
                       className="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                     >
                       Next Step

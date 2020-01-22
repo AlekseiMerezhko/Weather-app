@@ -1,10 +1,13 @@
 import * as Yup from "yup";
 
-export const AddArticleSchema = Yup.object().shape({
+export const AddArticleSchema1 = Yup.object().shape({
   creatorName: Yup.string().required("Name is required"),
   creatorEmail: Yup.string().required("Email is required"),
   pseudonym: Yup.string().required("Pseudonym is required"),
-  img: Yup.string().required("Image URL is required"),
+  img: Yup.string().required("Image URL is required")
+});
+
+export const AddArticleSchema2 = Yup.object().shape({
   title: Yup.string()
     .min(2, "Too Short!")
     .max(40, "Too Long!")
