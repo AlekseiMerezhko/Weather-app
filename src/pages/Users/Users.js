@@ -25,8 +25,12 @@ const Users = props => {
   const handleDeleteUser = userId => {
     const allUsers = props.user.users.filter(user => user.email !== userId);
     const currentUser = props.user.currentUser.email;
+    const newArticlesArray = props.articles.articles.filter(
+      article => article.creatorEmail !== userId
+    );
     if (userId !== currentUser) {
       props.deleteUser({ users: allUsers });
+      props.deleteArticle({ articles: newArticlesArray });
     } else {
       openModal();
     }

@@ -6,6 +6,7 @@ import {
   editUserStart,
   editUserEnd
 } from "../../actions/userActions";
+import { deleteArticle } from "../../actions/articlesAction";
 import Users from "./Users";
 
 // export default connect(state => ({
@@ -17,5 +18,6 @@ export default connect(({ user, articles }) => ({ user, articles }), {
   addUser,
   deleteUser,
   editUserStart,
-  editUserEnd
+  editUserEnd,
+  deleteArticle
 })(Users);

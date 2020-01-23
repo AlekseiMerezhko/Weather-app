@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "../actions/articlesAction";
+import { ADD_ARTICLE, DELETE_ARTICLE } from "../actions/articlesAction";
 
 export const articlesReducer = (
   state = {
@@ -12,7 +12,11 @@ export const articlesReducer = (
         ...state,
         articles: [...state.articles, action.payload.articles]
       };
-
+      case DELETE_ARTICLE:
+        return {
+          ...state,
+          articles: action.payload.articles
+        };
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
+import { LastLocationProvider } from "react-router-last-location";
 
 import App from "./App";
 import { store, persistor } from "./store/configureStore";
@@ -12,11 +13,13 @@ import "./css/tailwind.css";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
+    <LastLocationProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </LastLocationProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );
