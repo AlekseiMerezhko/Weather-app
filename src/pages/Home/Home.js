@@ -35,7 +35,7 @@ const Home = props => {
         cities={props.cities}
         setValue={handleChangeValue}
       />
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-10 overflow-x-auto">
         <ForecastTable
           currentCity={props.currentCity}
           dailyForecast={dailyForecast}

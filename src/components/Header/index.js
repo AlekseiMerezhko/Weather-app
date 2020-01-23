@@ -48,41 +48,40 @@ const Header = props => {
             </svg>
           </button>
         </div>
-
-        <div
-          style={{ transition: "max-height 0.5s ease-in-out" }}
-          className={`${
-            isExpanded ? `max-h-screen` : `max-h-0`
-          } h-full w-full block flex-grow lg:flex lg:items-center lg:w-auto`}
-        >
-          <div className="text-xl lg:flex-grow flex lg:flex-row flex-col items-center">
-            <Link
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
-              to="/"
-            >
-              Home
-            </Link>
-            <Link
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
-              to="/forecast"
-            >
-              Forecast
-            </Link>
-            <Link
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
-              to="/users"
-            >
-              Users
-            </Link>
-            <Link
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
-              to="/articles"
-            >
-              Articles
-            </Link>
-          </div>
-          <div className="text-xl text-white text-center">
-            {props.logined ? (
+        {props.logined ? (
+          <div
+            style={{ transition: "max-height 0.5s ease-in-out" }}
+            className={`${
+              isExpanded ? `max-h-screen` : `max-h-0`
+            } h-full w-full block flex-grow lg:flex lg:items-center lg:w-auto`}
+          >
+            <div className="text-xl lg:flex-grow flex lg:flex-row flex-col items-center">
+              <Link
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+                to="/"
+              >
+                Home
+              </Link>
+              <Link
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+                to="/forecast"
+              >
+                Forecast
+              </Link>
+              <Link
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+                to="/users"
+              >
+                Users
+              </Link>
+              <Link
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+                to="/articles"
+              >
+                Articles
+              </Link>
+            </div>
+            <div className="text-xl text-white text-center">
               <p>
                 Hi,{" "}
                 <span
@@ -92,9 +91,18 @@ const Header = props => {
                   {currentUser.name || ""}
                 </span>
               </p>
-            ) : null}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="text-xl">
+            <Link
+              className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+              to="/login"
+            >
+              Login
+            </Link>
+          </div>
+        )}
       </nav>
     </div>
   );

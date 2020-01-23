@@ -25,7 +25,7 @@ const Forecast = props => {
       {props.currentCity ? (
         <h1 className="text-center">Forecast for {props.value} for 15 days</h1>
       ) : null}
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-10 overflow-x-auto">
         <ForecastTable
           forecast={forecast}
           currentCity={props.currentCity}

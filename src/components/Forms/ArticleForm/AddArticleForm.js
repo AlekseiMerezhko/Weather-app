@@ -12,7 +12,6 @@ const ArticleForm = ({
   addArticle,
   currentUser,
   closeModal
-  // renderForm = values => {}
 }) => {
   return (
     <div>
@@ -28,9 +27,6 @@ const ArticleForm = ({
           important: false,
           category: ""
         }}
-        // validateOnMount={false}
-        // validateOnChange={false}
-        // validateOnBlur={false}
         validationSchema={step === 0 ? AddArticleSchema1 : AddArticleSchema2}
         onSubmit={values => {
           if (step === 0) {
@@ -45,17 +41,7 @@ const ArticleForm = ({
           }
         }}
       >
-        {({
-          errors,
-          touched,
-          values,
-          // validateForm,
-          // validateValue,
-          // setErrors,
-          // setTouched,
-          setFieldValue,
-          setFieldTouched
-        }) => (
+        {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
           <Form className="w-full ml-auto mr-auto">
             {step === 0 ? (
               <div className="w-full">

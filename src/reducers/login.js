@@ -1,6 +1,7 @@
 import { LOGIN, LOGOUT } from "../actions/loginActions";
 const initialState = {
-  logined: false
+  logined: false,
+  users: [{ username: "admin", password: "qweqweqwe123" }]
 };
 
 export function loginReducer(state = initialState, action) {
