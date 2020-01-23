@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import ArticleForm from "../Forms/ArticleForm/AddArticleForm";
+// import ArticleForm from "../Forms/ArticleForm/AddArticleForm";
+import AddArticleFirstStep from "../Forms/ArticleForm/AddArticleFirstStep";
+import AddArticleSecondStep from "../Forms/ArticleForm/AddArticleSecondStep";
+
+import RenderForm from "../Forms/RenderForm";
+import {
+  AddArticleSchema1,
+  AddArticleSchema2
+} from "../Forms/ArticleForm/ArticlesSchemas";
 const customStyles = {
   content: {
     top: "50%",
@@ -31,6 +39,31 @@ const AddArticleModal = props => {
   const resetStep = () => {
     setStep(0);
   };
+
+  const initialValues = {
+    creatorName: props.currentUser.name,
+    creatorEmail: props.currentUser.email,
+    pseudonym: "",
+    img: "",
+    title: "",
+    body: "",
+    important: false,
+    category: ""
+  };
+
+  const onSubmit = values => {
+    if (step === 0) {
+      return nextStep();
+    } else {
+      const newArticle = {
+        ...values,
+        id: `f${(~~(Math.random() * 1e8)).toString(16)}`
+      };
+      props.addArticle({ articles: newArticle });
+      props.closeModal();
+    }
+  };
+
   return (
     <div>
       <Modal
@@ -41,17 +74,28 @@ const AddArticleModal = props => {
         contentLabel="Example Modal"
       >
         <div>
-          <ArticleForm
+          {/* --------- Example 1 --------- */}
+
+          {/* <ArticleForm
             closeModal={props.closeModal}
             currentUser={props.currentUser}
             addArticle={props.addArticle}
             prevStep={prevStep}
             nextStep={nextStep}
             step={step}
-          />
-          {/* <ArcticleForm renderForm={(props => {
+          /> */}
 
-          })}/>> */}
+          {/* --------- Example 2 --------- */}
+          <RenderForm
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            renderForm={step === 0 ? AddArticleFirstStep : AddArticleSecondStep}
+            prevStep={prevStep}
+            validationSchema={
+              step === 0 ? AddArticleSchema1 : AddArticleSchema2
+            }
+          />
+
           <button
             onClick={() => {
               props.closeModal();
