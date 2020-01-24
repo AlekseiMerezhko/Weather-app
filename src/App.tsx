@@ -11,8 +11,22 @@ import NoMatch from "./pages/NoMatch";
 import { PrivateRoute } from "./hoc/PrivateRoute";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-function App(props) {
+// logined: true
+// users: Array(1)
+// 0:
+// username: "admin"
+// password: "qweqweqwe123"
+// __proto__: Object
+// length: 1
+// __proto__: Array(0)
+// dispatch: ƒ ()
+interface Props {
+  logined: boolean;
+  users: [{ username: string; password: string }];
+  dispatch: void;
+}
+function App(props: Props) {
+  console.log(props, "props");
   return (
     <div className="flex flex-col">
       <div className="flex flex-col min-h-screen">
@@ -54,4 +68,4 @@ function App(props) {
   );
 }
 
-export default connect(({ login }) => login)(App);
+export default connect(({ login }: { login: any }) => login)(App);

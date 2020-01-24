@@ -4,13 +4,33 @@ import Swal from "sweetalert2";
 import AddUserForm from "../../components/Forms/UserForm/AddUserForm";
 import UserCard from "./UserCard";
 import UserDeleteModal from "../../components/Modals/UserDeleteModal";
+type User = {
+  email: string;
+  name: string;
+};
+type Article = {
+  creatorName: string;
+  creatorEmail: string;
+  pseodonym: string;
+  img: string;
+  title: string;
+  body: string;
+  important: boolean;
+  category: string;
+  id: string;
+};
 
-const Users = props => {
+type Users = [{ name: string; email: string }];
+type CurrentUser = { name: string; email: string };
+
+const Users = (props: any) => {
   const [modalIsOpen, setModal] = useState(false);
   const userNotAlone = props.user.users.length > 1;
 
-  const handleChangeUser = userId => {
-    const currentUser = props.user.users.find(user => user.email === userId);
+  const handleChangeUser = (userId: string) => {
+    const currentUser = props.user.users.find(
+      (user: User) => user.email === userId
+    );
     if (props.user.currentUser.email === userId) {
       Swal.fire({
         icon: "info",
@@ -22,11 +42,13 @@ const Users = props => {
     }
   };
 
-  const handleDeleteUser = userId => {
-    const allUsers = props.user.users.filter(user => user.email !== userId);
+  const handleDeleteUser = (userId: string) => {
+    const allUsers = props.user.users.filter(
+      (user: User) => user.email !== userId
+    );
     const currentUser = props.user.currentUser.email;
     const newArticlesArray = props.articles.articles.filter(
-      article => article.creatorEmail !== userId
+      (article: Article) => article.creatorEmail !== userId
     );
     if (userId !== currentUser) {
       props.deleteUser({ users: allUsers });
@@ -36,8 +58,10 @@ const Users = props => {
     }
   };
 
-  const editModeToggler = userId => {
-    const currentUser = props.user.users.find(user => user.email === userId);
+  const editModeToggler = (userId: string) => {
+    const currentUser = props.user.users.find(
+      (user: User) => user.email === userId
+    );
     props.editUserStart({
       editMode: {
         active: true,
@@ -47,7 +71,7 @@ const Users = props => {
     });
   };
 
-  const handleEditUser = (users, currentUser) => {
+  const handleEditUser = (users: Users, currentUser: CurrentUser) => {
     props.editUserEnd({
       users,
       currentUser,
@@ -74,12 +98,11 @@ const Users = props => {
         addUser={props.addUser}
       />
       <div className="flex md:justify-between justify-center flex-wrap">
-        {props.user.users.map(user => (
+        {props.user.users.map((user: User) => (
           <UserCard
             articles={props.articles.articles}
             editMode={props.user.editMode.active}
             editModeToggler={editModeToggler}
-            openModal={openModal}
             handleDeleteUser={handleDeleteUser}
             userNotAlone={userNotAlone}
             key={user.email}

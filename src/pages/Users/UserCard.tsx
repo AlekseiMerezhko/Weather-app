@@ -1,5 +1,27 @@
 import React from "react";
 
+type Props = {
+  user: { name: string; email: string };
+  userNotAlone: boolean;
+  handleChangeUser: (param: any) => void;
+  handleDeleteUser: (param: any) => void;
+  editModeToggler: (param: any) => void;
+  editMode: boolean;
+  articles: [
+    {
+      creatorName: string;
+      creatorEmail: string;
+      pseodonym: string;
+      img: string;
+      title: string;
+      body: string;
+      important: boolean;
+      category: string;
+      id: string;
+    }
+  ];
+};
+
 const UserCard = ({
   user,
   userNotAlone,
@@ -8,7 +30,7 @@ const UserCard = ({
   editModeToggler,
   editMode,
   articles
-}) => {
+}: Props) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">
@@ -54,13 +76,13 @@ const UserCard = ({
         <button
           id={user.email}
           disabled={editMode}
-          onClick={e => handleChangeUser(e.target.id)}
+          onClick={(e: any) => handleChangeUser(e.target.id)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
         >
           Select
         </button>
         <button
-          onClick={e => editModeToggler(e.target.id)}
+          onClick={(e: any) => editModeToggler(e.target.id)}
           disabled={editMode}
           id={user.email}
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
@@ -71,7 +93,7 @@ const UserCard = ({
           <button
             id={user.email}
             disabled={!userNotAlone && editMode}
-            onClick={e => handleDeleteUser(e.target.id)}
+            onClick={(e: any) => handleDeleteUser(e.target.id)}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
           >
             Delete

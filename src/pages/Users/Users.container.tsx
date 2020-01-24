@@ -9,11 +9,14 @@ import {
 import { deleteArticle } from "../../actions/articlesAction";
 import Users from "./Users";
 
-// export default connect(state => ({
-//   user: state.user,
-// }), { changeUser })(Users);
-
-export default connect(({ user, articles }) => ({ user, articles }), {
+type Store = {
+  user: {
+    email: string;
+    name: string;
+  };
+  articles: {};
+};
+export default connect(({ user, articles }: Store) => ({ user, articles }), {
   changeUser,
   addUser,
   deleteUser,
