@@ -26,7 +26,6 @@ interface Props {
   dispatch: void;
 }
 function App(props: Props) {
-  console.log(props, "props");
   return (
     <div className="flex flex-col">
       <div className="flex flex-col min-h-screen">

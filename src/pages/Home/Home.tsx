@@ -9,7 +9,51 @@ import ForecastTable from "../../components/Tables/ForecastTable";
 import { apiKey } from "../../const/index";
 import { get1DayForecast } from "../../api/axios";
 import CustomField from "../../components/Inputs/CustomField";
-const Home = props => {
+
+interface Props {
+  history: any;
+  location: any;
+  match: any;
+  staticContext: any;
+  value: string;
+  cities: [
+    {
+      Version: number;
+      Key: string;
+      Type: string;
+      Rank: number;
+      LocalizedName: string;
+      Country: { ID: string; LocalizedName: string };
+      AdministrativeArea: {
+        ID: string;
+        LocalizedName: string;
+      };
+      label: string;
+      value: string;
+    }
+  ];
+  currentCity: {
+    Version: number;
+    Key: string;
+    Type: string;
+    Rank: number;
+    LocalizedName: string;
+    Country: { ID: string; LocalizedName: string };
+    AdministrativeArea: {
+      ID: string;
+      LocalizedName: string;
+    };
+  };
+  loading: boolean;
+  error: boolean;
+  getCities: (param: {
+    value: string;
+    cityValue: string;
+    idValue: string;
+  }) => void;
+}
+
+const Home = (props: Props) => {
   const [dailyForecast, setDailyForecast] = useState(null);
   const lastLocation = useLastLocation();
   useEffect(() => {
@@ -27,7 +71,7 @@ const Home = props => {
     }
   }, [props.currentCity]);
 
-  const handleChangeValue = value => {
+  const handleChangeValue = (value: string) => {
     const [cityValue, countryValue, idValue] = value.split(", ");
     props.getCities({ value: value, cityValue: cityValue, idValue: idValue });
   };
@@ -41,9 +85,8 @@ const Home = props => {
         </span>
       </p>
       <Formik
-        // initialValues={{ clientId: "" }}
+        initialValues={{ clientId: "" }}
         enableReinitialize
-        // validationSchema={firstStepSchema}
         onSubmit={values => {
           console.log(values, "values");
         }}

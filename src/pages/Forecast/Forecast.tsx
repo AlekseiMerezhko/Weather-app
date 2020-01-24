@@ -4,7 +4,45 @@ import { apiKey } from "../../const/index";
 
 import { get15DaysForecast } from "../../api/axios";
 
-const Forecast = props => {
+interface Props {
+  history: any;
+  location: any;
+  match: any;
+  staticContext: any;
+  value: string;
+  cities: [
+    {
+      Version: number;
+      Key: string;
+      Type: string;
+      Rank: number;
+      LocalizedName: string;
+      Country: { ID: string; LocalizedName: string };
+      AdministrativeArea: {
+        ID: string;
+        LocalizedName: string;
+      };
+      label: string;
+      value: string;
+    }
+  ];
+  currentCity: {
+    Version: number;
+    Key: string;
+    Type: string;
+    Rank: number;
+    LocalizedName: string;
+    Country: { ID: string; LocalizedName: string };
+    AdministrativeArea: {
+      ID: string;
+      LocalizedName: string;
+    };
+  };
+  loading: boolean;
+  error: boolean;
+}
+
+const Forecast = (props: Props) => {
   const [forecast, setForecast] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +65,7 @@ const Forecast = props => {
       ) : null}
       <div className="flex justify-center mt-10 overflow-x-auto">
         <ForecastTable
-          forecast={forecast}
+          dailyForecast={forecast}
           currentCity={props.currentCity}
         ></ForecastTable>
       </div>
