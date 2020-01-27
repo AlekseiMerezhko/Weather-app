@@ -4,7 +4,19 @@ const initialState = {
   users: [{ username: "admin", password: "qweqweqwe123" }]
 };
 
-export function loginReducer(state = initialState, action) {
+type Login = {
+  type: "LOGIN";
+  logined: boolean;
+};
+
+type Logout = {
+  type: "LOGOUT";
+  logined: boolean;
+};
+
+type Action = Login | Logout;
+
+export function loginReducer(state = initialState, action: Action) {
   switch (action.type) {
     case LOGIN:
       return { ...state, logined: true };

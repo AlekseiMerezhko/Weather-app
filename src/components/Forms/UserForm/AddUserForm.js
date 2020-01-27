@@ -23,7 +23,10 @@ const AddUserForm = props => {
       onSubmit={(values, { resetForm }) => {
         if (!props.editMode.active) {
           props.addUser({
-            user: { name: values.name, email: values.email }
+            users: [
+              ...props.allUsers,
+              { name: values.name, email: values.email }
+            ]
           });
           resetForm({});
         } else {
