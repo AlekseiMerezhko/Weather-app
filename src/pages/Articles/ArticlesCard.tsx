@@ -1,6 +1,17 @@
 import React from "react";
 
-const Articlescard = ({ article }) => {
+type Article = {
+  img: string;
+  important: boolean;
+  category: string;
+  title: string;
+  body: string;
+  creatorName: string;
+  pseudonym: string;
+  id?: string;
+};
+
+const Articlescard = ({ article }: { article: Article }) => {
   return (
     <div
       className={`m-5 max-w-md w-full max-h-md flex ${
