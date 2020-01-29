@@ -36,6 +36,10 @@ const Header = props => {
         <div className="block lg:hidden">
           <button
             onClick={() => toggleExpansion(!isExpanded)}
+            style={{
+              transform: isExpanded ? "rotate(180deg)" : null,
+              transition: "transform 0.5s ease-in-out"
+            }}
             className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
           >
             <svg
@@ -50,10 +54,12 @@ const Header = props => {
         </div>
         {props.logined ? (
           <div
-            style={{ transition: "max-height 0.5s ease-in-out" }}
+            style={{
+              transition: "all 0.5s ease-in-out"
+            }}
             className={`${
-              isExpanded ? `max-h-screen` : `max-h-0`
-            } h-full w-full block flex-grow lg:flex lg:items-center lg:w-auto`}
+              isExpanded ? `max-h-screen opacity-100` : `max-h-0 opacity-0`
+            } h-full w-full block flex-grow lg:flex md:opacity-100 lg:items-center lg:w-auto`}
           >
             <div className="text-xl lg:flex-grow flex lg:flex-row flex-col items-center">
               <Link
@@ -79,6 +85,12 @@ const Header = props => {
                 to="/articles"
               >
                 Articles
+              </Link>
+              <Link
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+                to="/react-window-table"
+              >
+                Table
               </Link>
             </div>
             <div className="text-xl text-white text-center">

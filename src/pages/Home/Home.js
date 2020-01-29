@@ -43,6 +43,25 @@ const Home = props => {
 
   return (
     <div>
+      {/* <div
+        style={{
+          width: "400px",
+          height: "400px",
+          background: "red",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+        onClick={() => console.log("2")}
+      >
+        <div
+          style={{ width: "200px", height: "200px", background: "green" }}
+          onClick={e => {
+            e.stopPropagation();
+            console.log("3");
+          }}
+        ></div>
+      </div> */}
       <p className="mb-4">
         Last location:{" "}
         <span className="text-red-400 text-xl">

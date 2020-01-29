@@ -91,6 +91,8 @@ const AddArticleModal = props => {
             onSubmit={onSubmit}
             renderForm={step === 0 ? AddArticleFirstStep : AddArticleSecondStep}
             prevStep={prevStep}
+            validateOnBlur={step === 1 ? false : true}
+            validateOnChange={step === 1 ? false : true}
             validationSchema={
               step === 0 ? AddArticleSchema1 : AddArticleSchema2
             }

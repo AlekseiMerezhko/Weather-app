@@ -7,19 +7,21 @@ import Home from "./pages/Home";
 import Users from "./pages/Users";
 import Articles from "./pages/Articles";
 import Login from "./pages/Login";
+import ReactWindowTable from "./pages/ReactWindowTable";
 import NoMatch from "./pages/NoMatch";
+import ReactWindowTableComponent from "./pages/ReactWindowTable/ReactWindowTableComponent";
 import { PrivateRoute } from "./hoc/PrivateRoute";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-// logined: true
-// users: Array(1)
-// 0:
-// username: "admin"
-// password: "qweqweqwe123"
-// __proto__: Object
-// length: 1
-// __proto__: Array(0)
-// dispatch: ƒ ()
+import {
+  HOME,
+  FORECAST,
+  USERS,
+  ARTICLES,
+  REACT_WINDOW_TABLE,
+  REACT_WINDOW_TABLE_COMPONENT,
+  NO_MATCH
+} from "./const/routes";
 interface Props {
   logined: boolean;
   users: [{ username: string; password: string }];
@@ -37,28 +39,40 @@ function App(props: Props) {
             <PrivateRoute
               logined={props.logined}
               exact
-              path="/"
+              path={HOME}
               component={Home}
             />
             <PrivateRoute
               logined={props.logined}
               exact
-              path="/forecast"
+              path={FORECAST}
               component={Forecast}
             />
             <PrivateRoute
               logined={props.logined}
               exact
-              path="/users"
+              path={USERS}
               component={Users}
             />
             <PrivateRoute
               logined={props.logined}
               exact
-              path="/articles"
+              path={ARTICLES}
               component={Articles}
             />
-            <Route path="*" component={NoMatch} />
+            <PrivateRoute
+              logined={props.logined}
+              exact
+              path={REACT_WINDOW_TABLE}
+              component={ReactWindowTable}
+            />
+            <PrivateRoute
+              logined={props.logined}
+              exact
+              path={REACT_WINDOW_TABLE_COMPONENT}
+              component={ReactWindowTableComponent}
+            />
+            <Route path={NO_MATCH} component={NoMatch} />
           </Switch>
         </main>
         <Footer />

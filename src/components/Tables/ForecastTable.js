@@ -48,7 +48,7 @@ const ForecastTable = ({ currentCity, dailyForecast }) => {
         {dailyForecast && currentCity ? (
           <tbody>
             {dailyForecast.map(day => (
-              <tr key={day.Link}>
+              <tr key={day.Link} className="hover:bg-gray-300">
                 <td className="border px-4 py-2">
                   {currentCity.LocalizedName}
                 </td>

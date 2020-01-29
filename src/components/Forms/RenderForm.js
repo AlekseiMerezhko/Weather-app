@@ -6,11 +6,14 @@ const RenderForm = ({
   initialValues,
   onSubmit,
   renderForm,
+
   ...props
 }) => {
   return (
     <div>
       <Formik
+        validateOnBlur={!props.validateOnBlur ? false : true}
+        validateOnChange={!props.validateOnChange ? false : true}
         initialValues={{
           ...initialValues
         }}

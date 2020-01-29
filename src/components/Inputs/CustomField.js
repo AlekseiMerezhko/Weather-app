@@ -26,20 +26,6 @@ const CustomField = styled(Field)`
     border-color: #f44336;
   }
 
-  // -----------------------------------------------------------------------
-  // && .MuiOutlinedInput-root.Mui-focused {
-  //   border-color: #575757;
-  // }
-  // && .MuiOutlinedInput-notchedOutline {
-  //   border-color: #575757;
-  // }
-  // && .MuiOutlinedInput-root.Mui-error {
-  //   border-color: #f44336;
-  // }
-  // && .MuiOutlinedInput-notchedOutline {
-  //   border-color: #575757;
-  // }
-
   .MuiOutlinedInput-multiline {
     padding: 10px;
   }
