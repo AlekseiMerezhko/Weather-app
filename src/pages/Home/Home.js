@@ -38,7 +38,13 @@ const Home = props => {
   // };
   const handleChangeValue = value => {
     const [cityValue, , idValue] = value.split(", ");
-    props.getCities({ value: value, cityValue: cityValue, idValue: idValue });
+    props.fetchCitiesData({
+      payload: {
+        value: value,
+        cityValue: cityValue,
+        idValue: idValue
+      }
+    });
   };
 
   return (
