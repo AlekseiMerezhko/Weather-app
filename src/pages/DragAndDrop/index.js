@@ -139,30 +139,18 @@ const DragAndDrop = () => {
   );
 };
 
-class InnerList extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    if (
-      nextProps.column === this.props.column &&
-      nextProps.taskMap === this.props.taskMap &&
-      nextProps.index === this.props.index
-    ) {
-      return false;
-    }
-    return true;
-  }
-  render() {
-    const { column, taskMap, index, isDropDisabled } = this.props;
-    const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-    return (
-      <Column
-        key={column.id}
-        column={column}
-        tasks={tasks}
-        isDropDisabled={isDropDisabled}
-        index={index}
-      />
-    );
-  }
-}
+const InnerList = React.memo(props => {
+  const { column, taskMap, index, isDropDisabled } = props;
+  const tasks = column.taskIds.map(taskId => taskMap[taskId]);
+  return (
+    <Column
+      key={column.id}
+      column={column}
+      tasks={tasks}
+      isDropDisabled={isDropDisabled}
+      index={index}
+    />
+  );
+});
 
 export default DragAndDrop;
