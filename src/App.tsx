@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import ReactWindowTable from "./pages/ReactWindowTable";
 import NoMatch from "./pages/NoMatch";
 import DragAndDrop from "./pages/DragAndDrop";
-
+import Grid from "./pages/Grid";
 import ReactWindowTableComponent from "./pages/ReactWindowTable/ReactWindowTableComponent";
 import { PrivateRoute } from "./hoc/PrivateRoute";
 import Header from "./components/Header";
@@ -25,7 +25,8 @@ import {
   REACT_WINDOW_TABLE,
   REACT_WINDOW_TABLE_COMPONENT,
   NO_MATCH,
-  DRAGANDDROP
+  DRAGANDDROP,
+  GRID
 } from "./const/routes";
 interface Props {
   logined: boolean;
@@ -40,7 +41,6 @@ function App(props: Props) {
         <main id="main" className="m-5 flex-grow">
           <Switch>
             <Route exact path="/login" component={Login} />
-
             <PrivateRoute
               logined={props.logined}
               exact
@@ -83,6 +83,13 @@ function App(props: Props) {
               path={DRAGANDDROP}
               component={DragAndDrop}
             />
+            <PrivateRoute
+              logined={props.logined}
+              exact
+              path={GRID}
+              component={Grid}
+            />
+
             <Route path={NO_MATCH} component={NoMatch} />
           </Switch>
         </main>
