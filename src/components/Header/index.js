@@ -92,6 +92,12 @@ const Header = props => {
               >
                 Table
               </Link>
+              <Link
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white lg:mr-4"
+                to="/dragAndDrop"
+              >
+                DnD
+              </Link>
             </div>
             <div className="text-xl text-white text-center">
               <p>

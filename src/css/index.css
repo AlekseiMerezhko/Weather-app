@@ -1,0 +1,10 @@
+.card-wrap:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+.card-wrap {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}

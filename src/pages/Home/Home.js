@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useLastLocation } from "react-router-last-location";
-import { TextField, Select } from "formik-material-ui";
-import { Formik, Form, ErrorMessage } from "formik";
-import { MenuItem, Divider } from "@material-ui/core";
-import * as Yup from "yup";
-import styled from "styled-components";
+// import { TextField, Select } from "formik-material-ui";
+// import { Formik, Form, ErrorMessage } from "formik";
+// import { MenuItem, Divider } from "@material-ui/core";
+// import * as Yup from "yup";
+// import styled from "styled-components";
 
 import AutocompleteInput from "../../components/Inputs/Autocomplete";
 import ForecastTable from "../../components/Tables/ForecastTable";
 import { apiKey } from "../../const/index";
 import { get1DayForecast } from "../../api/axios";
-import CustomField from "../../components/Inputs/CustomField";
+// import CustomField from "../../components/Inputs/CustomField";
 
 const Home = props => {
   const [dailyForecast, setDailyForecast] = useState(null);
   const lastLocation = useLastLocation();
-  const initialValues = {
-    title: "",
-    clientId: "HIHIHIHIH"
-  };
+  // const initialValues = {
+  //   title: "",
+  //   clientId: ""
+  // };
   useEffect(() => {
     async function fetchData() {
       const res = await get1DayForecast(props.currentCity.Key, apiKey);
@@ -33,11 +33,11 @@ const Home = props => {
       }
     }
   }, [props.currentCity]);
-  const resetFunction = resetFieldFunction => {
-    resetFieldFunction("title", "");
-  };
+  // const resetFunction = resetFieldFunction => {
+  //   resetFieldFunction("title", "");
+  // };
   const handleChangeValue = value => {
-    const [cityValue, countryValue, idValue] = value.split(", ");
+    const [cityValue, , idValue] = value.split(", ");
     props.getCities({ value: value, cityValue: cityValue, idValue: idValue });
   };
 
@@ -68,7 +68,10 @@ const Home = props => {
           {lastLocation ? lastLocation.pathname : "This page"}{" "}
         </span>
       </p>
-      <Formik
+      <button type="button" id="subscribe">
+        Следить за изменениями
+      </button>
+      {/* <Formik
         initialValues={initialValues}
         enableReinitialize
         onSubmit={values => {
@@ -84,7 +87,6 @@ const Home = props => {
           setErrors,
           isValid
         }) => {
-          // callback(submitForm, values, setErrors);
           return (
             <Form style={{ width: "100%" }}>
               <ColumnWrapper>
@@ -110,9 +112,6 @@ const Home = props => {
                     { label: "third", value: "3" }
                   ].map(option => (
                     <MenuItem
-                      // onMouseDown={() => {
-                      //   resetFunction(setFieldValue);
-                      // }}
                       key={option.value}
                       value={option.value}
                     >
@@ -136,7 +135,7 @@ const Home = props => {
             </Form>
           );
         }}
-      />
+      /> */}
 
       <AutocompleteInput
         value={props.value}
@@ -153,44 +152,44 @@ const Home = props => {
   );
 };
 
-const firstStepSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, "Too Short!")
-    .required("Required"),
-  clientId: Yup.number()
-    .moreThan(0, "Required")
-    .required("Required")
-});
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const ColumnWrapper = styled(Column)`
-  width: 50%;
-  padding: 0 50px;
-`;
-const Text = styled("span")`
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  font-size: ${props => (props.size ? props.size : "14px")};
-  font-weight: ${props => (props.weight ? props.weight : "normal")};
-  color: ${props => (props.color ? props.color : "#2d2d2d")};
-  margin: ${props => (props.margin ? props.margin : "0")};
-`;
+// const firstStepSchema = Yup.object().shape({
+//   title: Yup.string()
+//     .min(2, "Too Short!")
+//     .required("Required"),
+//   clientId: Yup.number()
+//     .moreThan(0, "Required")
+//     .required("Required")
+// });
+// const Column = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
+// const ColumnWrapper = styled(Column)`
+//   width: 50%;
+//   padding: 0 50px;
+// `;
+// const Text = styled("span")`
+//   font-style: normal;
+//   font-stretch: normal;
+//   line-height: normal;
+//   letter-spacing: normal;
+//   font-size: ${props => (props.size ? props.size : "14px")};
+//   font-weight: ${props => (props.weight ? props.weight : "normal")};
+//   color: ${props => (props.color ? props.color : "#2d2d2d")};
+//   margin: ${props => (props.margin ? props.margin : "0")};
+// `;
 
-const CustomErrorMessage = styled(Text)`
-  font-size: 0.75em;
-  color: #f44336;
-  text-align: left;
-`;
-const Label = styled(Text)`
-  color: grey;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  text-align: left;
-`;
+// const CustomErrorMessage = styled(Text)`
+//   font-size: 0.75em;
+//   color: #f44336;
+//   text-align: left;
+// `;
+// const Label = styled(Text)`
+//   color: grey;
+//   margin-top: 20px;
+//   margin-bottom: 10px;
+//   font-size: 13px;
+//   text-align: left;
+// `;
 
 export default Home;

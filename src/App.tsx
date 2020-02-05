@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
+import "file-loader?name=firebase-messaging-sw.js./firebase-messaging-sw.js";
+
 import Forecast from "./pages/Forecast";
 import Home from "./pages/Home";
 import Users from "./pages/Users";
@@ -9,6 +11,8 @@ import Articles from "./pages/Articles";
 import Login from "./pages/Login";
 import ReactWindowTable from "./pages/ReactWindowTable";
 import NoMatch from "./pages/NoMatch";
+import DragAndDrop from "./pages/DragAndDrop";
+
 import ReactWindowTableComponent from "./pages/ReactWindowTable/ReactWindowTableComponent";
 import { PrivateRoute } from "./hoc/PrivateRoute";
 import Header from "./components/Header";
@@ -20,7 +24,8 @@ import {
   ARTICLES,
   REACT_WINDOW_TABLE,
   REACT_WINDOW_TABLE_COMPONENT,
-  NO_MATCH
+  NO_MATCH,
+  DRAGANDDROP
 } from "./const/routes";
 interface Props {
   logined: boolean;
@@ -71,6 +76,12 @@ function App(props: Props) {
               exact
               path={REACT_WINDOW_TABLE_COMPONENT}
               component={ReactWindowTableComponent}
+            />
+            <PrivateRoute
+              logined={props.logined}
+              exact
+              path={DRAGANDDROP}
+              component={DragAndDrop}
             />
             <Route path={NO_MATCH} component={NoMatch} />
           </Switch>

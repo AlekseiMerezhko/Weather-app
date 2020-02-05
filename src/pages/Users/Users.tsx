@@ -81,6 +81,8 @@ const Users = (props: any) => {
 
   const closeModal = () => {
     setModal(false);
+    const ModalDnD: any = document.getElementById("ModalDnD");
+    ModalDnD.style.display = "none";
   };
 
   const openModal = () => {
@@ -97,7 +99,7 @@ const Users = (props: any) => {
         allUsers={props.user.users}
         addUser={props.addUser}
       />
-      <div className="flex md:justify-between justify-center flex-wrap">
+      <div className="flex md:justify-between justify-center flex-wrap mt-4">
         {props.user.users.map((user: User) => (
           <UserCard
             articles={props.articles.articles}

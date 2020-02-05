@@ -1,5 +1,4 @@
 import React from "react";
-import { Field } from "formik";
 const TailwindFormikSelect = ({
   errors,
   touched,

@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { LastLocationProvider } from "react-router-last-location";
 
+import * as serviceWorker from "./serviceWorker";
 import App from "./App";
 import { store, persistor } from "./store/configureStore";
 
@@ -27,3 +28,5 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
+
+serviceWorker.register();

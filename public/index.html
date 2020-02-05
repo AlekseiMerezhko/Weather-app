@@ -9,6 +9,7 @@
       name="description"
       content="Web site created using create-react-app"
     />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,7 +25,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Weather App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +40,99 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-messaging.js"></script>
+    <script>
+      // TODO: Replace the following with your app's Firebase project configuration
+
+      var firebaseConfig = {
+        apiKey: "AIzaSyDodM1jR9xNC3joGbmXr4RIlioxrah_Jvs",
+        authDomain: "weather-app-25f13.firebaseapp.com",
+        databaseURL: "https://weather-app-25f13.firebaseio.com",
+        projectId: "weather-app-25f13",
+        storageBucket: "weather-app-25f13.appspot.com",
+        messagingSenderId: "423447090547",
+        appId: "1:423447090547:web:ce2bba5dc0cc7caa5ee106",
+        measurementId: "G-ZZ53PDNWWK"
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("../firebase-messaging-sw.js")
+          .then(function(registration) {
+            firebase.messaging().useServiceWorker(registration);
+          })
+          .catch(function(err) {
+            console.log("Service worker registration failed, error:", err);
+          });
+      }
+
+      // const messaging = firebase.messaging();
+      // Initialize Firebase
+
+      // messaging.usePublicVapidKey(
+      //   "BK4h6jpj3ge4vTPtCU2tMyQ1M1695I4WK4BxYZy_Y1ZR7CIi0_J2H1HhiysIV6hfJxbCDka_8y11gZa1QjpoHb8"
+      // );
+
+      // messaging
+      //   .requestPermission()
+      //   .then(() => messaging.getToken())
+      //   .then(token => console.log(token))
+      //   .catch(function() {
+      //     console.log("Error Occured");
+      //   });
+      // messaging
+      //   .getToken()
+      //   .then(currentToken => {
+      //     if (currentToken) {
+      //       sendTokenToServer(currentToken);
+      //       updateUIForPushEnabled(currentToken);
+      //     } else {
+      //       // Show permission request.
+      //       console.log(
+      //         "No Instance ID token available. Request permission to generate one."
+      //       );
+      //       // Show permission UI.
+      //       updateUIForPushPermissionRequired();
+      //       setTokenSentToServer(false);
+      //     }
+      //   })
+      //   .catch(err => {
+      //     console.log("An error occurred while retrieving token. ", err);
+      //     showToken("Error retrieving Instance ID token. ", err);
+      //     setTokenSentToServer(false);
+      //   });
+      // messaging.onTokenRefresh(() => {
+      //   messaging
+      //     .getToken()
+      //     .then(refreshedToken => {
+      //       console.log("Token refreshed.");
+      //       // Indicate that the new Instance ID token has not yet been sent to the
+      //       // app server.
+      //       setTokenSentToServer(false);
+      //       // Send Instance ID token to app server.
+      //       sendTokenToServer(refreshedToken);
+      //       // ...
+      //     })
+      //     .catch(err => {
+      //       console.log("Unable to retrieve refreshed token ", err);
+      //       showToken("Unable to retrieve refreshed token ", err);
+      //     });
+      // });
+      firebase.analytics();
+    </script>
   </body>
 </html>
