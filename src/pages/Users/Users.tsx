@@ -20,49 +20,85 @@ type Article = {
   id: string;
 };
 
-type Users = [{ name: string; email: string }];
-type CurrentUser = { name: string; email: string };
+type Users = User[];
 
-const Users = (props: any) => {
+type EditMode = {
+  active: boolean;
+  name: string;
+  email: string;
+};
+
+type StoreUser = {
+  users: User[];
+  currentUser: User;
+  editMode: EditMode;
+};
+
+type Props = {
+  users: Users;
+  user: StoreUser;
+
+  articles: { articles: Article[] };
+
+  editUserStart: (object: { editMode: EditMode }) => void;
+  addUser: () => void;
+  editModeEnd: () => void;
+  changeUser: (currentUser: any) => void;
+  deleteUser: (users: { users: User[] }) => void;
+  editUserEnd: (user: {
+    users: User[];
+    currentUser: User;
+    editMode: EditMode;
+  }) => void;
+  deleteArticle: (articles: { articles: Article[] }) => void;
+};
+
+const Users = ({
+  user,
+  changeUser,
+  deleteUser,
+  deleteArticle,
+  articles,
+  editUserStart,
+  editUserEnd,
+  editModeEnd,
+  addUser
+}: Props) => {
   const [modalIsOpen, setModal] = useState(false);
-  const userNotAlone = props.user.users.length > 1;
+  const userNotAlone = user.users.length > 1;
 
   const handleChangeUser = (userId: string) => {
-    const currentUser = props.user.users.find(
-      (user: User) => user.email === userId
-    );
-    if (props.user.currentUser.email === userId) {
+    const currentUser = user.users.find((user: User) => user.email === userId);
+    if (user.currentUser.email === userId) {
       Swal.fire({
         icon: "info",
         title: "Oops...",
         text: "This user already selected!"
       });
     } else {
-      props.changeUser({ currentUser });
+      changeUser({ currentUser });
     }
   };
 
   const handleDeleteUser = (userId: string) => {
-    const allUsers = props.user.users.filter(
-      (user: User) => user.email !== userId
-    );
-    const currentUser = props.user.currentUser.email;
-    const newArticlesArray = props.articles.articles.filter(
+    const allUsers = user.users.filter((user: User) => user.email !== userId);
+    const currentUser = user.currentUser.email;
+    const newArticlesArray = articles.articles.filter(
       (article: Article) => article.creatorEmail !== userId
     );
     if (userId !== currentUser) {
-      props.deleteUser({ users: allUsers });
-      props.deleteArticle({ articles: newArticlesArray });
+      deleteUser({ users: allUsers });
+      deleteArticle({ articles: newArticlesArray });
     } else {
       openModal();
     }
   };
 
   const editModeToggler = (userId: string) => {
-    const currentUser = props.user.users.find(
+    const currentUser: any = user.users.find(
       (user: User) => user.email === userId
     );
-    props.editUserStart({
+    editUserStart({
       editMode: {
         active: true,
         name: currentUser.name,
@@ -71,8 +107,8 @@ const Users = (props: any) => {
     });
   };
 
-  const handleEditUser = (users: Users, currentUser: CurrentUser) => {
-    props.editUserEnd({
+  const handleEditUser = (users: Users, currentUser: User) => {
+    editUserEnd({
       users,
       currentUser,
       editMode: { active: false, name: "", email: "" }
@@ -81,8 +117,6 @@ const Users = (props: any) => {
 
   const closeModal = () => {
     setModal(false);
-    const ModalDnD: any = document.getElementById("ModalDnD");
-    ModalDnD.style.display = "none";
   };
 
   const openModal = () => {
@@ -93,22 +127,22 @@ const Users = (props: any) => {
     <div>
       <AddUserForm
         handleEditUser={handleEditUser}
-        editModeEnd={props.editModeEnd}
-        editMode={props.user.editMode}
-        currentUser={props.user.currentUser}
-        allUsers={props.user.users}
-        addUser={props.addUser}
+        editModeEnd={editModeEnd}
+        editMode={user.editMode}
+        currentUser={user.currentUser}
+        allUsers={user.users}
+        addUser={addUser}
       />
       <div className="flex md:justify-between justify-center flex-wrap mt-4">
-        {props.user.users.map((user: User) => (
+        {user.users.map((userList: User | any) => (
           <UserCard
-            articles={props.articles.articles}
-            editMode={props.user.editMode.active}
+            articles={articles.articles}
+            editMode={user.editMode.active}
             editModeToggler={editModeToggler}
             handleDeleteUser={handleDeleteUser}
             userNotAlone={userNotAlone}
-            key={user.email}
-            user={user}
+            key={userList.email}
+            user={userList}
             handleChangeUser={handleChangeUser}
           />
         ))}

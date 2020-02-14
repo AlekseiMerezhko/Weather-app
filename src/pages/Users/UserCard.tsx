@@ -1,5 +1,16 @@
 import React from "react";
 
+type Article = {
+  creatorName: string;
+  creatorEmail: string;
+  pseodonym: string;
+  img: string;
+  title: string;
+  body: string;
+  important: boolean;
+  category: string;
+  id: string;
+};
 type Props = {
   user: { name: string; email: string };
   userNotAlone: boolean;
@@ -7,19 +18,7 @@ type Props = {
   handleDeleteUser: (param: any) => void;
   editModeToggler: (param: any) => void;
   editMode: boolean;
-  articles: [
-    {
-      creatorName: string;
-      creatorEmail: string;
-      pseodonym: string;
-      img: string;
-      title: string;
-      body: string;
-      important: boolean;
-      category: string;
-      id: string;
-    }
-  ];
+  articles: Article[];
 };
 
 const UserCard = ({
@@ -49,8 +48,9 @@ const UserCard = ({
           </span>
           <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">
             {
-              articles.filter(article => article.creatorEmail === user.email)
-                .length
+              articles.filter(
+                (article: Article) => article.creatorEmail === user.email
+              ).length
             }
           </span>
           <span className="font-semibold mr-2 text-left flex-auto">
@@ -63,14 +63,14 @@ const UserCard = ({
           #{user.email}
         </span>
       </div>
-      {!userNotAlone ? (
+      {!userNotAlone && (
         <div className="px-6 py-4">
           <span className="inline-block px-3 py-1 text-sm font-semibold text-red-700 mr-2">
             If you want to delete this user, you need to create at leas one more
             user
           </span>
         </div>
-      ) : null}
+      )}
 
       <div className="px-6 py-4 flex justify-between">
         <button
@@ -89,7 +89,7 @@ const UserCard = ({
         >
           Edit
         </button>
-        {userNotAlone ? (
+        {userNotAlone && (
           <button
             id={user.email}
             disabled={!userNotAlone && editMode}
@@ -98,7 +98,7 @@ const UserCard = ({
           >
             Delete
           </button>
-        ) : null}
+        )}
       </div>
     </div>
   );

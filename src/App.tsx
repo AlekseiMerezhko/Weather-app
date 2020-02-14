@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "file-loader?name=firebase-messaging-sw.js./firebase-messaging-sw.js";
+// import "file-loader?name=firebase-messaging-sw.js./firebase-messaging-sw.js";
 
 import Forecast from "./pages/Forecast";
 import Home from "./pages/Home";
@@ -28,11 +28,11 @@ import {
   DRAGANDDROP,
   GRID
 } from "./const/routes";
-interface Props {
+type Props = {
   logined: boolean;
   users: [{ username: string; password: string }];
   dispatch: void;
-}
+};
 function App(props: Props) {
   return (
     <div className="flex flex-col">

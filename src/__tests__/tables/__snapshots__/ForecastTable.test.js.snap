@@ -1,0 +1,286 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> Check ForecastTable render 1`] = `
+<div>
+  <label
+    className="MuiFormControlLabel-root"
+  >
+    <span
+      className="MuiSwitch-root"
+    >
+      <span
+        aria-disabled={false}
+        className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-19 MuiSwitch-switchBase MuiSwitch-colorSecondary PrivateSwitchBase-checked-20 Mui-checked"
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={null}
+      >
+        <span
+          className="MuiIconButton-label"
+        >
+          <input
+            checked={true}
+            className="PrivateSwitchBase-input-22 MuiSwitch-input"
+            disabled={false}
+            onChange={[Function]}
+            type="checkbox"
+            value="isFahrenheit"
+          />
+          <span
+            className="MuiSwitch-thumb"
+          />
+        </span>
+      </span>
+      <span
+        className="MuiSwitch-track"
+      />
+    </span>
+    <span
+      className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+    >
+      Fahrenheit
+    </span>
+  </label>
+  <table
+    className="table-auto"
+  >
+    <thead>
+      <tr>
+        <th
+          className="px-4 py-2"
+        >
+          City
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Date
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Minimum Temperature 
+          °F
+          :
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Maximum Temperature 
+          °F
+          :
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Day
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Night
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
+`;
+
+exports[`<Footer /> properly increments and decrements the counter 1`] = `
+<div>
+  <label
+    className="MuiFormControlLabel-root"
+  >
+    <span
+      className="MuiSwitch-root"
+    >
+      <span
+        aria-disabled={false}
+        className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-19 MuiSwitch-switchBase MuiSwitch-colorSecondary PrivateSwitchBase-checked-20 Mui-checked"
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={null}
+      >
+        <span
+          className="MuiIconButton-label"
+        >
+          <input
+            checked={true}
+            className="PrivateSwitchBase-input-22 MuiSwitch-input"
+            disabled={false}
+            onChange={[Function]}
+            type="checkbox"
+            value="isFahrenheit"
+          />
+          <span
+            className="MuiSwitch-thumb"
+          />
+        </span>
+      </span>
+      <span
+        className="MuiSwitch-track"
+      />
+    </span>
+    <span
+      className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+    >
+      Fahrenheit
+    </span>
+  </label>
+  <table
+    className="table-auto"
+  >
+    <thead>
+      <tr>
+        <th
+          className="px-4 py-2"
+        >
+          City
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Date
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Minimum Temperature 
+          °F
+          :
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Maximum Temperature 
+          °F
+          :
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Day
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Night
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
+`;
+
+exports[`<ForecastTable /> Check ForecastTable render 1`] = `
+<div>
+  <label
+    className="MuiFormControlLabel-root"
+  >
+    <span
+      className="MuiSwitch-root"
+    >
+      <span
+        aria-disabled={false}
+        className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-19 MuiSwitch-switchBase MuiSwitch-colorSecondary PrivateSwitchBase-checked-20 Mui-checked"
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={null}
+      >
+        <span
+          className="MuiIconButton-label"
+        >
+          <input
+            checked={true}
+            className="PrivateSwitchBase-input-22 MuiSwitch-input"
+            disabled={false}
+            onChange={[Function]}
+            type="checkbox"
+            value="isFahrenheit"
+          />
+          <span
+            className="MuiSwitch-thumb"
+          />
+        </span>
+      </span>
+      <span
+        className="MuiSwitch-track"
+      />
+    </span>
+    <span
+      className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+    >
+      Fahrenheit
+    </span>
+  </label>
+  <table
+    className="table-auto"
+  >
+    <thead>
+      <tr>
+        <th
+          className="px-4 py-2"
+        >
+          City
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Date
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Minimum Temperature 
+          °F
+          :
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Maximum Temperature 
+          °F
+          :
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Day
+        </th>
+        <th
+          className="px-4 py-2"
+        >
+          Night
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
+`;

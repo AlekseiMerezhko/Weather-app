@@ -7,9 +7,9 @@ import {
 } from "../actions/userActions";
 const initialState = {
   users: [
-    { name: "Alex", email: "merezhko.aleksei@gmail.com" },
-    { name: "Igor", email: "igor.malyga@gmail.com" },
-    { name: "Dima", email: "dima.popov@gmail.com" }
+    { name: "Vlad", email: "vlad@gmail.com" },
+    { name: "Igor", email: "igor@gmail.com" },
+    { name: "Dima", email: "dima@gmail.com" }
   ],
   currentUser: { name: "Alex", email: "merezhko.aleksei@gmail.com" },
   editMode: {
