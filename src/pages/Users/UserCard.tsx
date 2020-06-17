@@ -76,13 +76,13 @@ const UserCard = ({
         <button
           id={user.email}
           disabled={editMode}
-          onClick={(e: any) => handleChangeUser(e.target.id)}
+          onClick={e => handleChangeUser((e.target as HTMLInputElement).id)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
         >
           Select
         </button>
         <button
-          onClick={(e: any) => editModeToggler(e.target.id)}
+          onClick={e => editModeToggler((e.target as HTMLInputElement).id)}
           disabled={editMode}
           id={user.email}
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
@@ -93,7 +93,7 @@ const UserCard = ({
           <button
             id={user.email}
             disabled={!userNotAlone && editMode}
-            onClick={(e: any) => handleDeleteUser(e.target.id)}
+            onClick={e => handleDeleteUser((e.target as HTMLInputElement).id)}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
           >
             Delete

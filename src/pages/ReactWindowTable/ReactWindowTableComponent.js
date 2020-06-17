@@ -3,6 +3,8 @@ import ReactPaginate from "react-paginate";
 const ReactWindowTableComponent = props => {
   const [articles, setArticle] = useState([]);
   const [data, setData] = useState([]);
+  const [selectedRow, setRow] = useState([]);
+
   useEffect(() => {
     let arr = [];
     for (let i = 0; i < 100; i++) {
@@ -16,6 +18,17 @@ const ReactWindowTableComponent = props => {
     setArticle(arr);
     setData(arr.slice(0, 10));
   }, []);
+  const handleSelectArticle = articleId => {
+    selectedRow.some(row => row === articleId);
+    if (selectedRow.find(article => article === articleId)) {
+      const newArticleArray = selectedRow.filter(
+        article => article !== articleId
+      );
+      setRow(newArticleArray);
+    } else {
+      setRow([...selectedRow, articleId]);
+    }
+  };
   const handlePageClick = data => {
     let selected = data.selected;
     let offset = Math.ceil(selected * 10);
@@ -44,7 +57,15 @@ const ReactWindowTableComponent = props => {
           </thead>
           <tbody>
             {data.map(article => (
-              <tr key={article.id}>
+              <tr
+                key={article.id}
+                onClick={() => handleSelectArticle(article.id)}
+                className={`${
+                  selectedRow.some(row => row === article.id)
+                    ? "bg-gray-500"
+                    : null
+                } cursor-pointer`}
+              >
                 <td className="border px-4 py-2">{article.title}</td>
                 <td className="border px-4 py-2">{article.author}</td>
                 <td className="border px-4 py-2">{article.views}</td>

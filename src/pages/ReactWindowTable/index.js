@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FixedSizeList as List } from "react-window";
 
 const ReactWindowTable = () => {
+  const add = (a, b) => {
+    return a + b;
+  };
+  const add2 = (a, b) => {
+    let result = 0;
+    for (let i = 0; i < b; i++) {
+      result += a;
+    }
+    return result;
+  };
+  console.log(add(2, 3));
+  console.log(add2(2, 3));
+
   return (
     <div className="flex justify-center flex-col items-center">
       <div className="flex m-5">
@@ -45,7 +58,7 @@ const ReactWindowTable = () => {
 };
 
 const Row = ({ index, style }) => (
-  <div className="hover:bg-gray-300" style={style}>
+  <div className={`hover:bg-gray-300`} style={style}>
     <div className="border px-4 py-2">item {index}</div>
   </div>
 );
